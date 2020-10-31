@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <menuitem name="Clinic"
+                  id="root_menu_clinic"
+                  web_icon="clinic_customization,static/description/icon.png"
+                  sequence="1"/>
+
+        <menuitem name="Clinic"
+                  id="menu_new_works"
+                  parent="clinic_customization.root_menu_clinic"
+                  action="clinic_customization.action_clinic"
+                  sequence="2"/>
+    </data>
+</odoo>

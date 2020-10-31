@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="views_clinic_form" model="ir.ui.view">
+            <field name="name">clinic.clinic.form</field>
+            <field name="model">clinic.clinic</field>
+            <field name="priority">15</field>
+            <field name="arch" type="xml">
+                <form string="Clinic">
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Initial Contact Information">
+                            <label for="contact_name"/>
+                            <div class="o_row">
+                                <field name="title" placeholder="Title" domain="[]" options='{"no_open": True}'/>
+                                <field name="contact_name"/>
+                            </div>
+                            <field name="function"/>
+                            <field name="mobile" widget="phone"/>
+                            <field name="phone" widget="phone"/>
+                            <field name="email" widget="email"/>
+                        </group>
+
+		                <group class="mt48" >
+                            <label for="street" string="Address"/>
+                            <div class="o_address_format">
+                                <field name="street" placeholder="Street..." class="o_address_street"/>
+                                <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                <field name="city" placeholder="City" class="o_address_city"/>
+                                <field name="state_id" class="o_address_state" placeholder="State" options='{"no_open": True}'/>
+                                <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+                            </div>
+                        </group>
+
+                    </group>
+<!--
+                                <button name="add_periodic_appraisal" type="object" string="Add" class="btn-success fa fa-plus" style="margin-left:10px; margin-bottom:5px;"/>
+-->
+                    <field name="line_ids">
+                          <tree>
+                            <field name="date"/>
+                              <field name="amount"/>
+                              <field name="currency_id" invisible="1"/>
+                            <field name="prescription"/>
+                          </tree>
+                          <form>
+                                <sheet>
+                                    <group>
+                                        <field name="date"/>
+                                        <field name="amount"/>
+                                        <field name="currency_id" invisible="1"/>
+                                    </group>
+                                    <group string="Prescription"></group>
+                                    <field name="prescription" widget="html"/>
+                                </sheet>
+                          </form>
+                    </field>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_clinic_tree">
+			<field name="name">clinic.clinic.Tree</field>
+			<field name="model">clinic.clinic</field>
+			<field name="arch" type="xml">
+				<tree string="Clinc">
+					<field name="name"/>
+					<field name="contact_name" />
+					<field name="function" />
+					<field name="mobile" />
+					<field name="phone" />
+                    <field name="email" widget="email"/>
+				</tree>
+			</field>
+		</record>
+
+        <record id="view_clinin_search" model="ir.ui.view">
+            <field name="name">clinic.clinic.search</field>
+            <field name="model">clinic.clinic</field>
+            <field name="arch" type="xml">
+                <search>
+                	<field name="name"/>
+					<field name="contact_name" />
+					<field name="function" />
+					<field name="mobile" />
+					<field name="phone" />
+                    <field name="email" widget="email"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_clinic">
+			<field name="name">Clinic</field>
+			<field name="res_model">clinic.clinic</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+            <field name="context">{'form_view_ref':'clinic_customization.views_clinic_form'}</field>
+		</record>
+    </data>
+</odoo>
